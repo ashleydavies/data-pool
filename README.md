@@ -103,7 +103,7 @@ of immediate changes, whilst `DataStore` is best for persisting those changes.
 
 For example, you may ban users by saving their usernames to `DataStore`, as well
 as immediately adding their usernames to a `BannedUsers` pool, which prevents
-them being unable to join other servers due to `DataStore` caching.
+them being able to join other servers due to `DataStore` caching.
 
 ### More sophisticated example
 
@@ -156,7 +156,7 @@ function GetPoints(player): number | undefined {
 function AwardPoints(player, points) {
     LeaderboardPool.ReplaceContribution({
         username: player.username,
-        points: (GetPoints(player) !== undefined || 0) + points,
+        points: (GetPoints(player) || 0) + points,
     });
 }
 ```
