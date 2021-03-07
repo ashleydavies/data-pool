@@ -16,29 +16,8 @@ Underneath the hood, this library uses `MessagingService` to communicate between
 
 ## Current issues
 
-There are a few current issues with data-pooler:
-
-1. There is currently no handling for messages getting lost or checksums, so the eventually consistent
-guarantee currently does not hold in instances where a message is dropped
-
-2. When a new server joins the pool, all of the existing information in the pool needs to be synced to it.
-In theory, this information could be batched or transmitted intelligently in a way that minimises the number
-of messages sent. In practice, `data-pooler` currently just sends messages at a rate of 2Hz per server.
-You may find this overwhelms your rate limits if you use multiple pools or use `MessagingService` for
-other uses.
-
-3. If a server shuts down without gracefully invoking the handler, other live
-servers never clue into this and will continue to blindly remember what it
-contributed to the pool. Some form of heart-beat is planned in a future version
-to protect against this.
-
-4. Pools will send messages as their contributions are updated, even if that is
-high frequency. Likely we will want to throttle this with an outbound messaging
-priority queue. This would need to understand that if a message is added to the queue
-with the same key as an older message, the older message should not be sent,
-and the new message should have the same priority as the older message.
-Until then, this is not suitable for high frequency updates (see [limitations
-of `MessagingService`](https://developer.roblox.com/en-us/api-reference/class/MessagingService))
+There are a few current issues with data-pooler you should consider before using `data-pooler` in a
+production game. They're documented [as GitHub issues](https://github.com/ashleydavies/data-pooler/issues).
 
 Pull requests are entirely welcome to solve these, and any other, issues.
 
