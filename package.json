@@ -1,5 +1,5 @@
 {
-  "name": "data-pool",
+  "name": "@rbxts/data-pool",
   "version": "0.2.0",
   "description": "Synchronise eventually-consistent collections of data between multiple servers",
   "main": "out/init.lua",
