@@ -127,6 +127,12 @@ as immediately adding their usernames to a `BannedUsers` pool.
 
 ### More sophisticated example
 
+**Until message throttling is implemented, you will not want to use
+an example like this which is likely to have high frequency updates,
+unless you implement your own throttling around the Pool. See the current
+issues section above for more information. This is just a demonstration of
+how to do something more complex.**
+
 ```typescript
 const HTTPService = game.GetService("HttpService");
 
