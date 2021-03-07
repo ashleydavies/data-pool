@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/data-pooler",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Synchronise eventually-consistent collections of data between multiple servers",
   "main": "out/init.lua",
   "repository": "https://github.com/ashleydavies/data-pooler",
@@ -13,16 +13,15 @@
     "Communication",
     "Synchronisation"
   ],
+  "types": "out/index.d.ts",
   "files": [
-		"src",
-		"typings"
+		"out"
 	],
   "author": "Ashley Davies",
   "license": "ISC",
   "publishConfig": {
     "access": "public"
   },
-  "types": "out/index.d.ts",
   "devDependencies": {
     "@rbxts/compiler-types": "^1.0.0-beta.15.1",
     "@rbxts/types": "^1.0.459",
