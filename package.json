@@ -13,6 +13,10 @@
     "Communication",
     "Synchronisation"
   ],
+  "files": [
+		"src",
+		"typings"
+	],
   "author": "Ashley Davies",
   "license": "ISC",
   "publishConfig": {
