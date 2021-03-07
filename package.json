@@ -1,13 +1,18 @@
 {
-  "name": "net-server-sync",
-  "version": "0.1.0",
+  "name": "data-pool",
+  "version": "0.2.0",
   "description": "Synchronise eventually-consistent collections of data between multiple servers",
   "main": "out/init.lua",
-	"repository": "https://github.com/ashleydavies/net-server-sync",
+  "repository": "https://github.com/ashleydavies/data-pool",
   "scripts": {
     "prepublishOnly": "rbxtsc"
   },
-  "keywords": ["Roblox", "Server", "Communication", "Synchronisation"],
+  "keywords": [
+    "Roblox",
+    "Server",
+    "Communication",
+    "Synchronisation"
+  ],
   "author": "Ashley Davies",
   "license": "ISC",
   "publishConfig": {

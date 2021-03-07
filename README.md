@@ -1,10 +1,10 @@
-# net-server-sync
+# data-pool
 
-net-server-sync is a library for handling inter-server data aggregation in Roblox, written in TypeScript.
+data-pool is a library for handling inter-server data aggregation in Roblox, written in TypeScript.
 
 ## What does it do?
 
-net-server-sync allows you to define `Pool`s, which allow all Roblox servers within the same game to aggregate
+data-pool allows you to define `Pool`s, which allow all Roblox servers within the same game to aggregate
 portions of information which is automatically shared amongst them to form an eventually-consistent
 global set of information on every server.
 
@@ -16,14 +16,14 @@ Underneath the hood, this library uses `MessagingService` to communicate between
 
 ## Current issues
 
-There are a few current issues with net-server-sync:
+There are a few current issues with data-pool:
 
 1. There is currently no handling for messages getting lost or checksums, so the eventually consistent
 guarantee currently does not hold in instances where a message is dropped
 
 2. When a new server joins the pool, all of the existing information in the pool needs to be synced to it.
 In theory, this information could be batched or transmitted intelligently in a way that minimises the number
-of messages sent. In practice, `net-server-sync` currently just sends messages at a rate of 2Hz per server.
+of messages sent. In practice, `data-pool` currently just sends messages at a rate of 2Hz per server.
 You may find this overwhelms your rate limits if you use multiple pools or use `MessagingService` for
 other uses.
 
@@ -47,11 +47,11 @@ Pull requests are entirely welcome to solve these, and any other, issues.
 If you have an [roblox-ts](https://roblox-ts.com) environment set up, you can use NPM or Yarn to install this:
 
 ```bash
-npm i @rbxts/net-server-sync
+npm i @rbxts/data-pool
 ```
 
 ```bash
-yarn add @rbxts/net-server-sync
+yarn add @rbxts/data-pool
 ```
 
 If you're not sure which you use, check if you have a `package-lock.json` or a `yarn.lock` file. The former
@@ -60,7 +60,7 @@ is from `npm` and the latter is from `yarn`.
 ## Usage
 
 A pool can share any type of data, whether it be simple strings or tables of information, as long as
-it serializes to a bit less than 1Kb (limitation of `MessagingService`, plus `net-server-sync`
+it serializes to a bit less than 1Kb (limitation of `MessagingService`, plus `data-pool`
 includes some bytes of metadata).
 
 A pool requires a few properties:
@@ -79,7 +79,7 @@ To create a `Pool` that allows you to maintain a list of all players in your gam
 you can use a simple `StringPool` with the usernames of each player:
 
 ```typescript
-import { StringPool } from "@rbxts/net-server-sync";
+import { StringPool } from "@rbxts/data-pool";
 
 const PlayerPool = StringPool("Players");
 
