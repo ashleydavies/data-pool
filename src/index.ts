@@ -161,7 +161,7 @@ class Pool<T> {
 			this.ReplaceContribution(value.Value);
 
 			// Delay pool catch-up to avoid bottlenecks. TODO: Something more clever
-			wait(0.1);
+			wait(0.5);
 		}
 	}
 

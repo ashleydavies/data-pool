@@ -23,7 +23,7 @@ guarantee currently does not hold in instances where a message is dropped
 
 2. When a new server joins the pool, all of the existing information in the pool needs to be synced to it.
 In theory, this information could be batched or transmitted intelligently in a way that minimises the number
-of messages sent. In practice, `net-server-sync` currently just sends messages at a rate of 10Hz per server.
+of messages sent. In practice, `net-server-sync` currently just sends messages at a rate of 2Hz per server.
 You may find this overwhelms your rate limits if you use multiple pools or use `MessagingService` for
 other uses.
 
