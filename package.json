@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/net-server-sync",
-  "version": "1.1.0",
+  "version": "0.1.0",
   "description": "Synchronise eventually-consistent collections of data between multiple servers",
   "main": "out/init.lua",
   "scripts": {

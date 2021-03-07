@@ -165,7 +165,7 @@ class Pool<T> {
 		}
 	}
 
-	public GetServerContributions(serverId: string): Set<HashKey> {
+	private GetServerContributions(serverId: string): Set<HashKey> {
 		const existing = this.ServerMap.get(serverId);
 		if (existing !== undefined) {
 			return existing;
@@ -173,6 +173,18 @@ class Pool<T> {
 		const serverSet = new Set<HashKey>();
 		this.ServerMap.set(serverId, serverSet);
 		return serverSet;
+	}
+
+	public GetAllContributions(): Array<T> {
+		const contribs = new Array<T>();
+		this.Contributions.forEach((c) => {
+			contribs.push(c.Value);
+		});
+		return contribs;
+	}
+
+	public GetContribution(key: HashKey): T | undefined {
+		return this.Contributions.get(key)?.Value;
 	}
 
 	public ReplaceContribution(contribution: T) {
@@ -185,12 +197,12 @@ class Pool<T> {
 		});
 	}
 
-	public RemoveContribution(contribution: T) {
+	public RemoveContribution(contributionKey: HashKey) {
 		const [removeSuccess, removeResult] = pcall((_) => {
 			return messagingService.PublishAsync(this.TopicName(), {
 				type: "remove",
 				seid: thisServerId,
-				key: this.hasher(contribution),
+				key: contributionKey,
 			});
 		});
 	}
