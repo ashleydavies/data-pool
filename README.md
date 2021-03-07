@@ -123,7 +123,8 @@ to sharing information: pools are a volatile, fast way to inform other servers
 of immediate changes, whilst `DataStore` is best for persisting those changes.
 
 For example, you may ban users by saving their usernames to `DataStore`, as well
-as immediately adding their usernames to a `BannedUsers` pool.
+as immediately adding their usernames to a `BannedUsers` pool, which prevents
+them being unable to join other servers due to `DataStore` caching.
 
 ### More sophisticated example
 
