@@ -49,7 +49,7 @@ class Pool<T> {
 	private readonly ServerMap = new Map<string, Set<HashKey>>();
 	private readonly MessageSubscription: RBXScriptConnection;
 	// Event called with the entry, and whether it's new or not (true = new, false = update)
-	public readonly ContributionChanged = new ObjectEvent<[PoolEntry<T>, boolean]>();
+	public readonly ContributionChanged = new ObjectEvent<[T, boolean]>();
 	// ContributionRemoved is called with the hashkey for the contribution
 	// I'm not 100% happy with this API, but I'd like to see a use-case for
 	// worrying about providing the contribution. If you have one, let's talk.
@@ -110,11 +110,6 @@ class Pool<T> {
 			return;
 		}
 
-		const entry = {
-			ServerSource: message.seid,
-			SentTime: time,
-			Value: obj,
-		};
 		this.Contributions.set(key, {
 			ServerSource: message.seid,
 			SentTime: time,
@@ -125,7 +120,7 @@ class Pool<T> {
 		if (existing === undefined) {
 			isNew = true;
 		}
-		this.ContributionChanged.Fire(entry, isNew);
+		this.ContributionChanged.Fire(obj, isNew);
 	}
 
 	private HandleRemove(message: RemoveMessage) {

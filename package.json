@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/data-pooler",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Synchronise eventually-consistent collections of data between multiple servers",
   "main": "out/init.lua",
   "repository": "https://github.com/ashleydavies/data-pooler",
