@@ -1,3 +1,5 @@
+import ObjectEvent from "@rbxts/object-event";
+
 const messagingService = game.GetService("MessagingService");
 
 type HashKey = string;
@@ -46,6 +48,12 @@ class Pool<T> {
 	readonly Contributions = new Map<HashKey, PoolEntry<T>>();
 	readonly ServerMap = new Map<string, Set<HashKey>>();
 	readonly MessageSubscription: RBXScriptConnection;
+	// Event called with the entry, and whether it's new or not (true = new, false = update)
+	readonly ContributionChanged = new ObjectEvent<[PoolEntry<T>, boolean]>();
+	// ContributionRemoved is called with the hashkey for the contribution
+	// I'm not 100% happy with this API, but I'd like to see a use-case for
+	// worrying about providing the contribution. If you have one, let's talk.
+	readonly ContributionRemoved = new ObjectEvent<[string]>();
 	private currentRefresh = 0;
 
 	constructor(
@@ -102,12 +110,22 @@ class Pool<T> {
 			return;
 		}
 
+		const entry = {
+			ServerSource: message.seid,
+			SentTime: time,
+			Value: obj,
+		};
 		this.Contributions.set(key, {
 			ServerSource: message.seid,
 			SentTime: time,
 			Value: obj,
 		});
 		this.GetServerContributions(message.seid).add(key);
+		let isNew = false;
+		if (existing === undefined) {
+			isNew = true;
+		}
+		this.ContributionChanged.Fire(entry, isNew);
 	}
 
 	private HandleRemove(message: RemoveMessage) {
@@ -123,6 +141,7 @@ class Pool<T> {
 
 		this.GetServerContributions(message.seid).delete(message.key);
 		this.Contributions.delete(message.key);
+		this.ContributionRemoved.Fire(message.key);
 	}
 
 	private HandleClear(message: ClearMessage) {
