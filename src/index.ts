@@ -45,15 +45,15 @@ interface PoolEntry<T> {
 const thisServerId = game.JobId === "" ? "STUDIO" : game.JobId;
 
 class Pool<T> {
-	readonly Contributions = new Map<HashKey, PoolEntry<T>>();
-	readonly ServerMap = new Map<string, Set<HashKey>>();
-	readonly MessageSubscription: RBXScriptConnection;
+	private readonly Contributions = new Map<HashKey, PoolEntry<T>>();
+	private readonly ServerMap = new Map<string, Set<HashKey>>();
+	private readonly MessageSubscription: RBXScriptConnection;
 	// Event called with the entry, and whether it's new or not (true = new, false = update)
-	readonly ContributionChanged = new ObjectEvent<[PoolEntry<T>, boolean]>();
+	public readonly ContributionChanged = new ObjectEvent<[PoolEntry<T>, boolean]>();
 	// ContributionRemoved is called with the hashkey for the contribution
 	// I'm not 100% happy with this API, but I'd like to see a use-case for
 	// worrying about providing the contribution. If you have one, let's talk.
-	readonly ContributionRemoved = new ObjectEvent<[string]>();
+	public readonly ContributionRemoved = new ObjectEvent<[string]>();
 	private currentRefresh = 0;
 
 	constructor(
