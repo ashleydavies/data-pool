@@ -2,6 +2,8 @@
 
 data-pooler is a library for handling inter-server data aggregation in Roblox, written in TypeScript.
 
+All official distributions are [on NPM](https://www.npmjs.com/package/@rbxts/data-pooler)
+
 ## What does it do?
 
 data-pooler allows you to define `Pool`s, which allow all Roblox servers within the same game to aggregate
