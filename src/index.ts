@@ -1,4 +1,5 @@
 import ObjectEvent from "@rbxts/object-event";
+import { HttpService } from "@rbxts/services";
 
 const messagingService = game.GetService("MessagingService");
 
@@ -249,6 +250,17 @@ export function StringPool(poolName: string): Pool<string> {
 		(a) => a,
 		(a) => a,
 		(a) => a,
+	);
+}
+
+// A JSONPool automatically serializes entries using HttpService's JSON encoding
+// facilities. It is probably what you'll want to use most of the time.
+export function JSONPool<T>(poolName: string, hasher: Hasher<T>): Pool<T> {
+	return GeneralPool<T>(
+		poolName,
+		hasher,
+		(p) => HttpService.JSONEncode(p),
+		(p) => HttpService.JSONDecode(p),
 	);
 }
 

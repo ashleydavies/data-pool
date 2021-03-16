@@ -71,6 +71,11 @@
   dependencies:
     "@rbxts/types" "^1.0.462"
 
+"@rbxts/services@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@rbxts/services/-/services-1.1.4.tgz#a373d20e23e5c35141b5d2f989bc261112e485f1"
+  integrity sha512-6H+ltvNCZKZeAXVxFPUpUzkQ3nCrBZuFbFVE5U7/5itOYM4c057YMPARtZk6XCmipWfBhiZQG5v4DvMRZ5aOig==
+
 "@rbxts/types@^1.0.459":
   version "1.0.459"
   resolved "https://registry.yarnpkg.com/@rbxts/types/-/types-1.0.459.tgz#57e187e0383f06fa3a63a9a9b7aebf16e1d432e8"

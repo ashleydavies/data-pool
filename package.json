@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/data-pooler",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Synchronise eventually-consistent collections of data between multiple servers",
   "main": "out/init.lua",
   "repository": "https://github.com/ashleydavies/data-pooler",
@@ -35,6 +35,7 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "@rbxts/object-event": "^1.0.1"
+    "@rbxts/object-event": "^1.0.1",
+    "@rbxts/services": "^1.1.4"
   }
 }
